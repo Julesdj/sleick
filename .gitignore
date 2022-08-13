@@ -27,10 +27,5 @@ yarn-error.log*
 .env
 
 NOTEBOOK.md
-indexDemo.js
-userDemo.js
-authnDemo.js
-authzDemo.js
-errorDemo.js
-adminDemo.js
+demo/
 AccountMenu.jsx
