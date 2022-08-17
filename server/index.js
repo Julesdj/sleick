@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import Express from 'express';
 import dotenv from 'dotenv';
 import users from './controllers/user.js';
+import tickets from './controllers/ticket.js';
 import authn from './controllers/authn.js';
 
 //Connection to MongoDB
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 //Middleware
 app.use(Express.json());
 app.use('/api/users', users);
+app.use('/api/tickets', tickets);
 app.use('/api/authn', authn);
 
 //Port

@@ -32,7 +32,11 @@ const userSchema = new Schema(
             minlength: 8,
             maxlength: 1024,
         },
-        isAdmin: Boolean,
+        role: {
+            type: String,
+            enum: ['admin', 'project manager', 'developer', 'user'],
+            default: 'user',
+        },
     },
     { timestamps: true }
 );
@@ -50,10 +54,7 @@ userSchema.methods.generateAuthnToken = function () {
             );
     }
 
-    const token = jwt.sign(
-        { _id: this._id, isAdmin: this.isAdmin },
-        jwtPrivateKey
-    );
+    const token = jwt.sign({ _id: this._id, role: this.role }, jwtPrivateKey);
 
     return token;
 };
@@ -68,6 +69,12 @@ export function validateUser(user) {
         lastName: Joi.string().min(3).max(50).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: Joi.string().min(8).max(255).required(),
+        role: Joi.string().valid(
+            'admin',
+            'project manager',
+            'developer',
+            'user'
+        ),
     });
 
     return schema.validate(user);
