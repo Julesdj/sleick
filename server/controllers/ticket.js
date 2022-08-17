@@ -6,7 +6,7 @@ import Ticket, {
 } from '../models/ticket.js';
 import User from '../models/user.js';
 // import admin from '../middleware/admin.js';
-// import authz from '../middleware/authz.js';
+import authz from '../middleware/authz.js';
 
 //Variables
 const tickets = Express.Router();
@@ -25,32 +25,29 @@ tickets.get('/', async (req, res) => {
 });
 
 //Create a new ticket
-tickets.post('/', async (req, res) => {
+tickets.post('/', authz, async (req, res) => {
     //Send appropriate error
     const { error } = validateTicket(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    //Validate user
-    const userId = req.body.submitter;
-    if (userId !== User.findById(userId))
-        return res.status(400).send('submitter must be a valid user');
+    try {
+        //Validate user
+        const user = await User.findById(req.user._id);
+        //Register user
+        const ticket = new Ticket({
+            submitter: user._id,
+            title: req.body.title,
+            priority: req.body.priority,
+            status: req.body.status,
+            description: req.body.description,
+        });
 
-    //Register user
-    let ticket = new Ticket(
-        _.pick(req.body, [
-            'submitter',
-            'title',
-            'priority',
-            'status',
-            'description',
-        ])
-    ); //using lodash to avoid repeating req.body
-
-    await ticket.save();
-
-    console.log(ticket);
-
-    res.send(ticket); ////using lodash to avoid repeating req.body
+        await ticket.save();
+        console.log(ticket);
+        res.send(ticket);
+    } catch (error) {
+        res.status(400).send('submitter must be a valid user');
+    }
 });
 
 //Get single ticket
