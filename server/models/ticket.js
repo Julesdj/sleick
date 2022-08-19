@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const ticketSchema = new Schema(
     {
-        submitter: {
+        submitterId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -11,10 +11,17 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import HomeIcon from '@mui/icons-material/Home';
-// import Link from '@mui/material/Link';
+//icons
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import ChatIcon from '@mui/icons-material/Chat';
+import PeopleIcon from '@mui/icons-material/People';
+import WorkIcon from '@mui/icons-material/Work';
 
 import { Link as RouterLink } from 'react-router-dom';
+
+import authn from '../services/authnService';
 import theme from '../theme';
 // import AccountMenu from './AccountMenu';
 
@@ -27,39 +34,59 @@ function DashboardLayout({ window, children }) {
         setMobileOpen(!mobileOpen);
     };
 
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        try {
+            let currentUser = authn.getCurrentUser();
+            console.log(currentUser);
+            setUser(currentUser);
+        } catch (err) {}
+    }, []);
+
     const drawer = (
         <div>
             <Toolbar>
-                <Typography variant="h5" noWrap component="div">
-                    TRACKER
+                <Typography variant="h4" noWrap component="div">
+                    {/* Tracker Inc. */}
+                    {user.firstName}
                 </Typography>
             </Toolbar>
             <Divider />
             <List>
                 <ListItem button component={RouterLink} to="/user/dashboard">
                     <ListItemIcon>
-                        <HomeIcon />
+                        <DashboardIcon />
                     </ListItemIcon>
                     <ListItemText primary="Dashboard" />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/all-projects">
-                    <ListItemIcon></ListItemIcon>
+                    <ListItemIcon>
+                        <AccountTreeIcon />
+                    </ListItemIcon>
                     <ListItemText primary="All Projects" />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/my-tickets">
-                    <ListItemIcon></ListItemIcon>
+                    <ListItemIcon>
+                        <ConfirmationNumberIcon />
+                    </ListItemIcon>
                     <ListItemText primary="My Tickets" />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/manage-role">
-                    <ListItemIcon></ListItemIcon>
+                    <ListItemIcon>
+                        <WorkIcon />
+                    </ListItemIcon>
                     <ListItemText primary="Manage Role" />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/my-team">
-                    <ListItemIcon></ListItemIcon>
+                    <ListItemIcon>
+                        <PeopleIcon />
+                    </ListItemIcon>
                     <ListItemText primary="My Team" />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/chat">
-                    <ListItemIcon></ListItemIcon>
+                    <ListItemIcon>
+                        <ChatIcon />
+                    </ListItemIcon>
                     <ListItemText primary="Chat" />
                 </ListItem>
             </List>

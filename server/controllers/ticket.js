@@ -15,8 +15,8 @@ const _ = lodash;
 //Get all tickets
 tickets.get('/', async (req, res) => {
     const tickets = await Ticket.find().populate(
-        'submitter',
-        'firstName lastName email'
+        'submitterId',
+        'firstName lastName email role'
     );
     const ticketCount = await Ticket.find().count();
     if (ticketCount === 0)
@@ -35,7 +35,7 @@ tickets.post('/', authz, async (req, res) => {
         const user = await User.findById(req.user._id);
         //Register user
         const ticket = new Ticket({
-            submitter: user._id,
+            submitterId: user._id,
             title: req.body.title,
             priority: req.body.priority,
             status: req.body.status,
