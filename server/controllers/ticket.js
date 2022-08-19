@@ -39,6 +39,8 @@ tickets.post('/', authz, async (req, res) => {
             title: req.body.title,
             priority: req.body.priority,
             status: req.body.status,
+            device: req.body.device,
+            browser: req.body.browser,
             description: req.body.description,
         });
 
@@ -55,7 +57,7 @@ tickets.get('/:id', async (req, res) => {
     try {
         const ticket = await Ticket.findById(req.params.id).populate(
             'submitter',
-            'firstName lastName email'
+            'firstName lastName email role'
         );
         res.send(ticket);
     } catch (error) {
@@ -73,6 +75,8 @@ tickets.put('/:id', async (req, res) => {
             'title',
             'priority',
             'status',
+            'device',
+            'browser',
             'description',
         ]);
         const ticket = await Ticket.findByIdAndUpdate(ticketId, data, {

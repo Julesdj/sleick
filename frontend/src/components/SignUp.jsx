@@ -75,7 +75,6 @@ function SignUp() {
                     </Typography>
                     <Box
                         component="form"
-                        noValidate
                         onSubmit={handleSubmit}
                         sx={{ mt: 3 }}
                     >
@@ -129,10 +128,11 @@ function SignUp() {
                             variant="contained"
                             sx={{
                                 bgcolor: 'primary.main',
-                                pt: 2,
-                                pb: 2,
+                                pb: 1,
+                                pt: 1,
                                 mt: 3,
                                 mb: 2,
+                                fontSize: '1.3rem',
                             }}
                         >
                             Sign Up

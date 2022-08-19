@@ -10,7 +10,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 
 const columns = [
-    { field: 'Title', headerName: 'Project title', width: 180 },
+    { field: 'Title', headerName: 'Ticket title', width: 180 },
     {
         field: 'Priority',
         headerName: 'Priority',
@@ -35,7 +35,7 @@ const columns = [
     },
     {
         field: 'date',
-        headerName: 'Due date',
+        headerName: 'Submition date',
         type: 'date',
         width: 180,
         editable: true,
@@ -74,7 +74,7 @@ const rows = [
     { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
 ];
 
-function AllProjects() {
+function AllTickects() {
     return (
         <Container component="main" maxWidth="lg">
             <Box
@@ -87,11 +87,11 @@ function AllProjects() {
                     mt: 1,
                 }}
             >
-                <Typography variant="h4">Projects table</Typography>
+                <Typography variant="h4">Tickets table</Typography>
                 <Button
                     variant="contained"
                     component={RouterLink}
-                    to="/user/new-project"
+                    to="/user/new-ticket"
                     size="medium"
                     sx={{
                         color: 'white',
@@ -124,4 +124,4 @@ function AllProjects() {
     );
 }
 
-export default AllProjects;
+export default AllTickects;

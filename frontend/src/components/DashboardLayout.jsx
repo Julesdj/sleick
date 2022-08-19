@@ -38,7 +38,6 @@ function DashboardLayout({ window, children }) {
     useEffect(() => {
         try {
             let currentUser = authn.getCurrentUser();
-            console.log(currentUser);
             setUser(currentUser);
         } catch (err) {}
     }, []);
@@ -47,8 +46,8 @@ function DashboardLayout({ window, children }) {
         <div>
             <Toolbar>
                 <Typography variant="h4" noWrap component="div">
-                    {/* Tracker Inc. */}
-                    {user.firstName}
+                    Tracker Inc.
+                    {/* {user.firstName} */}
                 </Typography>
             </Toolbar>
             <Divider />

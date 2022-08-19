@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
 import DashboardLayout from './components/DashboardLayout';
 import { CssBaseline } from '@mui/material';
 import SignUp from './components/SignUp';
@@ -15,6 +14,8 @@ import MyTickets from './components/projects/MyTickets';
 import Page404 from './components/Page404';
 import SignIn from './components/SignIn';
 import RequireAuthn from './services/RequireAuthn';
+import NewTicket from './components/projects/NewTicket';
+import AllTickects from './components/projects/AllTickects';
 
 function App() {
     return (
@@ -37,6 +38,10 @@ function App() {
                                         path="all-projects"
                                         element={<AllProjects />}
                                     />
+                                    <Route
+                                        path="all-tickects"
+                                        element={<AllTickects />}
+                                    />
                                     <Route path="chat" element={<Chat />} />
                                     <Route
                                         path="my-team"
@@ -49,6 +54,10 @@ function App() {
                                     <Route
                                         path="my-tickets"
                                         element={<MyTickets />}
+                                    />
+                                    <Route
+                                        path="new-ticket"
+                                        element={<NewTicket />}
                                     />
                                     <Route path="*" element={<Page404 />} />
                                 </Routes>

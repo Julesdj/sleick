@@ -26,16 +26,22 @@ const ticketSchema = new Schema(
             enum: ['new', 'open', 'in progess', 'resolved'],
             default: 'new',
         },
-        // device: {
-        //     type: String,
-        //     enum: ['phone', 'laptop', 'pc', 'tablet'],
-        //     required: true,
-        // },
-        // browser: {
-        //     type: String,
-        //     enum: ['google chrome', 'microsft edge', 'mozilla firefox', 'safari', 'other'],
-        //     required: true,
-        // },
+        device: {
+            type: String,
+            enum: ['phone', 'laptop', 'pc', 'tablet'],
+            required: true,
+        },
+        browser: {
+            type: String,
+            enum: [
+                'google chrome',
+                'microsft edge',
+                'mozilla firefox',
+                'safari',
+                'other',
+            ],
+            required: true,
+        },
         description: {
             type: String,
             required: true,
@@ -54,6 +60,18 @@ export function validateTicket(ticket) {
         title: Joi.string().min(5).max(100).required(),
         priority: Joi.string().valid('low', 'medium', 'high'),
         status: Joi.string().valid('new', 'open', 'in progess', 'resolved'),
+        device: Joi.string()
+            .valid('phone', 'laptop', 'pc', 'tablet')
+            .required(),
+        browser: Joi.string()
+            .valid(
+                'google chrome',
+                'microsft edge',
+                'mozilla firefox',
+                'safari',
+                'other'
+            )
+            .required(),
         description: Joi.string().min(5).required(),
     });
 
@@ -64,6 +82,14 @@ export function validateTicketUpdate(ticket) {
         title: Joi.string().min(5).max(100),
         priority: Joi.string().valid('low', 'medium', 'high'),
         status: Joi.string().valid('new', 'open', 'in progess', 'resolved'),
+        device: Joi.string().valid('phone', 'laptop', 'pc', 'tablet'),
+        browser: Joi.string().valid(
+            'google chrome',
+            'microsft edge',
+            'mozilla firefox',
+            'safari',
+            'other'
+        ),
         description: Joi.string().min(5),
     });
 

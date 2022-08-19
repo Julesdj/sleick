@@ -76,7 +76,6 @@ function SignIn() {
                     <Box
                         component="form"
                         onSubmit={handleSubmit}
-                        noValidate
                         sx={{ mt: 1 }}
                     >
                         <TextField
@@ -111,10 +110,11 @@ function SignIn() {
                             variant="contained"
                             sx={{
                                 bgcolor: 'primary.main',
-                                pt: 2,
-                                pb: 2,
+                                pt: 1,
+                                pb: 1,
                                 mt: 3,
                                 mb: 2,
+                                fontSize: '1.3rem',
                             }}
                         >
                             Sign In
