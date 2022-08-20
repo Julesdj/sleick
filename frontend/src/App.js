@@ -15,7 +15,7 @@ import Page404 from './components/Page404';
 import SignIn from './components/SignIn';
 import RequireAuthn from './services/RequireAuthn';
 import NewTicket from './components/projects/NewTicket';
-import AllTickects from './components/projects/AllTickects';
+import AllTickets from './components/projects/AllTickets';
 
 function App() {
     return (
@@ -39,8 +39,8 @@ function App() {
                                         element={<AllProjects />}
                                     />
                                     <Route
-                                        path="all-tickects"
-                                        element={<AllTickects />}
+                                        path="all-tickets"
+                                        element={<AllTickets />}
                                     />
                                     <Route path="chat" element={<Chat />} />
                                     <Route
