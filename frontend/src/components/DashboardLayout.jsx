@@ -23,7 +23,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import authn from '../services/authnService';
 import theme from '../theme';
-// import AccountMenu from './AccountMenu';
+import AccountMenu from '../components/AccountMenu';
 
 const drawerWidth = 240;
 
@@ -104,18 +104,27 @@ function DashboardLayout({ window, children }) {
                     ml: { sm: `${drawerWidth}px` },
                 }}
             >
-                <Toolbar sx={{ display: 'flex' }}>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                </Toolbar>
-                {/* <AccountMenu /> */}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        mr: 2,
+                    }}
+                >
+                    <Toolbar sx={{ display: 'flex' }}>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            sx={{ mr: 2, display: { sm: 'none' } }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                    </Toolbar>
+                    <AccountMenu />
+                </Box>
             </AppBar>
 
             <Box

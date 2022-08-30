@@ -91,7 +91,7 @@ function AllProjects() {
                 <Button
                     variant="contained"
                     component={RouterLink}
-                    to="/user/new-project"
+                    to="/user/new-ticket"
                     size="medium"
                     sx={{
                         color: 'white',

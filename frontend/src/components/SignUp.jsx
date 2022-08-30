@@ -1,19 +1,28 @@
 import React, { useEffect } from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import authn from '../services/authnService';
 import theme from '../theme';
+
+function Copyright(props) {
+    return (
+        <Typography
+            variant="body2"
+            color="text.secondary"
+            align="center"
+            {...props}
+        ></Typography>
+    );
+}
 
 function SignUp() {
     //Redirect user
@@ -25,7 +34,7 @@ function SignUp() {
         if (currentUser) {
             navigate('/user/dashboard', { replace: true });
         }
-    }, []);
+    });
 
     let from = location.state?.from?.pathname || '/user/dashboard';
 
@@ -43,7 +52,7 @@ function SignUp() {
             authn.loginWithJwt(response.headers['x-authn-token']);
             navigate(from, { replace: true }); //redirect user
         } catch (error) {
-            console.log(error.response.data);
+            alert(error.response.data);
         }
     };
 
@@ -58,7 +67,7 @@ function SignUp() {
             <Container component="main" maxWidth="sm" sx={{ padding: 2 }}>
                 <Box
                     sx={{
-                        mt: 6,
+                        mt: '25%',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -128,11 +137,10 @@ function SignUp() {
                             variant="contained"
                             sx={{
                                 bgcolor: 'primary.main',
-                                pb: 1,
-                                pt: 1,
+                                pt: 2,
+                                pb: 2,
                                 mt: 3,
                                 mb: 2,
-                                fontSize: '1.3rem',
                             }}
                         >
                             Sign Up
@@ -146,6 +154,7 @@ function SignUp() {
                         </Grid>
                     </Box>
                 </Box>
+                <Copyright sx={{ mt: 5 }} />
             </Container>
         </div>
     );

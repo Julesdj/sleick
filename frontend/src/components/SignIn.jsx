@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,9 +11,20 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import authn from '../services/authnService';
 import theme from '../theme';
+
+function Copyright(props) {
+    return (
+        <Typography
+            variant="body2"
+            color="text.secondary"
+            align="center"
+            {...props}
+        ></Typography>
+    );
+}
 
 function SignIn() {
     //Redirect user
@@ -26,7 +36,7 @@ function SignIn() {
         if (currentUser) {
             navigate('/user/dashboard', { replace: true });
         }
-    }, []);
+    });
 
     let from = location.state?.from?.pathname || '/user/dashboard';
 
@@ -42,7 +52,7 @@ function SignIn() {
             await authn.login(user.email, user.password);
             navigate(from, { replace: true }); //redirect user
         } catch (error) {
-            console.log(error.response.data);
+            alert(error.response.data);
         }
     };
 
@@ -110,11 +120,10 @@ function SignIn() {
                             variant="contained"
                             sx={{
                                 bgcolor: 'primary.main',
-                                pt: 1,
-                                pb: 1,
+                                pt: 2,
+                                pb: 2,
                                 mt: 3,
                                 mb: 2,
-                                fontSize: '1.3rem',
                             }}
                         >
                             Sign In
@@ -128,6 +137,7 @@ function SignIn() {
                         </Grid>
                     </Box>
                 </Box>
+                <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
         </div>
     );

@@ -26,7 +26,7 @@ export function getCurrentUser() {
     }
 }
 
-export async function getJwt() {
+export function getJwt() {
     return localStorage.getItem(tokenKey);
 }
 
@@ -34,8 +34,8 @@ export async function getJwt() {
 
 export default {
     login,
+    loginWithJwt,
     logout,
     getCurrentUser,
-    loginWithJwt,
     getJwt,
 };
