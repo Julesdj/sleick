@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -17,6 +17,7 @@ import Typography from '@mui/material/Typography';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ChatIcon from '@mui/icons-material/Chat';
 import PeopleIcon from '@mui/icons-material/People';
 import WorkIcon from '@mui/icons-material/Work';
@@ -28,7 +29,7 @@ import AccountMenu from '../components/users/AccountMenu';
 const drawerWidth = 240;
 
 function DashboardLayout({ window, children }) {
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -44,12 +45,16 @@ function DashboardLayout({ window, children }) {
 
     const drawer = (
         <div>
-            <Toolbar>
+            {/* <Toolbar> */}
+            <Box sx={{ ml: 2, mt: 1 }}>
                 <Typography variant="h4" noWrap component="div">
                     Tracker Inc.
-                    {/* {user.firstName} */}
                 </Typography>
-            </Toolbar>
+                <Typography variant="h6" noWrap component="div">
+                    Welcome {user.firstName} {user.lastName}
+                </Typography>
+            </Box>
+            {/* </Toolbar> */}
             <Divider />
             <List>
                 <ListItem button component={RouterLink} to="/user/dashboard">
@@ -76,9 +81,21 @@ function DashboardLayout({ window, children }) {
                         }}
                     />
                 </ListItem>
-                <ListItem button component={RouterLink} to="/user/my-tickets">
+                <ListItem button component={RouterLink} to="/user/all-tickets">
                     <ListItemIcon>
                         <ConfirmationNumberIcon />
+                    </ListItemIcon>
+                    <ListItemText
+                        primary="All Tickets"
+                        primaryTypographyProps={{
+                            fontSize: 20,
+                            fontWeight: 'medium',
+                        }}
+                    />
+                </ListItem>
+                <ListItem button component={RouterLink} to="/user/my-tickets">
+                    <ListItemIcon>
+                        <FormatListBulletedIcon />
                     </ListItemIcon>
                     <ListItemText
                         primary="My Tickets"

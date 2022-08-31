@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { parseISO } from 'date-fns';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
@@ -8,36 +9,33 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link as RouterLink } from 'react-router-dom';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
+import { getTickets } from '../../services/ticketService';
 
 const columns = [
-    { field: 'Title', headerName: 'Ticket title', width: 180 },
+    { field: 'Title', headerName: 'Ticket title', width: 220 },
     {
         field: 'Priority',
         headerName: 'Priority',
-        width: 180,
+        width: 120,
         backgroundColor: 'green',
         editable: true,
     },
     {
         field: 'Status',
         headerName: 'Status',
-        width: 180,
+        width: 120,
         editable: true,
     },
     {
         field: 'fullName',
         headerName: 'Submitter',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 200,
-        // valueGetter: (params) =>
-        //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+        width: 230,
     },
     {
         field: 'date',
         headerName: 'Submition date',
         type: 'date',
-        width: 180,
+        width: 220,
         editable: true,
     },
     {
@@ -60,21 +58,33 @@ const columns = [
     },
 ];
 
-const rows = [
-    {
-        id: 1,
-        Title: 'Demo project',
-        Priority: 'medium',
-        Status: 'Open',
-        fullName: 'John Doe',
-        date: '08/10/2022',
-        action: 'Delete',
-    },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-];
-
 function AllTickets() {
+    const [tickets, setTickets] = useState([]);
+    useEffect(() => {
+        async function getTicketsData() {
+            try {
+                const { data } = await getTickets();
+                console.log(data);
+                setTickets(data);
+            } catch (error) {
+                console.log('error');
+            }
+        }
+        getTicketsData();
+    }, []);
+
+    const rows = tickets.map((ticket) => ({
+        id: ticket._id,
+        Title: ticket.title,
+        Priority: ticket.priority,
+        Status: ticket.status,
+        fullName:
+            ticket.submitterId['firstName'] +
+            ' ' +
+            ticket.submitterId['lastName'],
+        date: parseISO(ticket.createdAt),
+    }));
+
     return (
         <Container component="main" maxWidth="lg">
             <Box
@@ -115,7 +125,7 @@ function AllTickets() {
                     rows={rows}
                     columns={columns}
                     pageSize={15}
-                    rowsPerPageOptions={[6]}
+                    rowsPerPageOptions={[15]}
                     checkboxSelection
                     disableSelectionOnClick
                 />

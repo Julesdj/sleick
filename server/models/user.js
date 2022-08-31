@@ -55,7 +55,12 @@ userSchema.methods.generateAuthnToken = function () {
     }
 
     const token = jwt.sign(
-        { _id: this._id, role: this.role, firstName: this.firstName },
+        {
+            _id: this._id,
+            role: this.role,
+            firstName: this.firstName,
+            lastName: this.lastName,
+        },
         jwtPrivateKey
     );
 

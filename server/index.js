@@ -10,9 +10,9 @@ import authn from './controllers/authn.js';
 //Connection to MongoDB
 mongoose
     .connect(process.env.MONGODB_URI)
-    .then(() => console.log('Connected to IssueTracker Mongo Database ...'))
+    .then(() => console.log('Connected to Sleick Mongo Database ...'))
     .catch((err) =>
-        console.error('Connected to Tracker Mongo Database ...', err.message)
+        console.error('Connected to Sleick Mongo Database ...', err.message)
     );
 
 //Variables
