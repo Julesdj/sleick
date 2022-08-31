@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import DashboardLayout from './components/DashboardLayout';
 import { CssBaseline } from '@mui/material';
-import SignUp from './components/SignUp';
 
 import Dashboard from './components/Dashboard';
 // import { Route, Routes } from 'react-router-dom';
@@ -12,7 +11,8 @@ import MyTeam from './components/MyTeam';
 import ManageRole from './components/ManageRole';
 import MyTickets from './components/projects/MyTickets';
 import Page404 from './components/Page404';
-import SignIn from './components/SignIn';
+import SignIn from './components/users/SignIn';
+import SignUp from './components/users/SignUp';
 import RequireAuthn from './services/RequireAuthn';
 import NewTicket from './components/projects/NewTicket';
 import AllTickets from './components/projects/AllTickets';

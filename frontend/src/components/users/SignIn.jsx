@@ -12,8 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useLocation, useNavigate } from 'react-router-dom';
-import authn from '../services/authnService';
-import theme from '../theme';
+import authn from '../../services/authnService';
+import theme from '../../theme';
 
 function Copyright(props) {
     return (

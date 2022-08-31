@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -10,6 +11,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 //icons
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -19,11 +21,9 @@ import ChatIcon from '@mui/icons-material/Chat';
 import PeopleIcon from '@mui/icons-material/People';
 import WorkIcon from '@mui/icons-material/Work';
 
-import { Link as RouterLink } from 'react-router-dom';
-
 import authn from '../services/authnService';
 import theme from '../theme';
-import AccountMenu from '../components/AccountMenu';
+import AccountMenu from '../components/users/AccountMenu';
 
 const drawerWidth = 240;
 
@@ -56,37 +56,73 @@ function DashboardLayout({ window, children }) {
                     <ListItemIcon>
                         <DashboardIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Dashboard" />
+                    <ListItemText
+                        primary="Dashboard"
+                        primaryTypographyProps={{
+                            fontSize: 20,
+                            fontWeight: 'medium',
+                        }}
+                    />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/all-projects">
                     <ListItemIcon>
                         <AccountTreeIcon />
                     </ListItemIcon>
-                    <ListItemText primary="All Projects" />
+                    <ListItemText
+                        primary="All Projects"
+                        primaryTypographyProps={{
+                            fontSize: 20,
+                            fontWeight: 'medium',
+                        }}
+                    />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/my-tickets">
                     <ListItemIcon>
                         <ConfirmationNumberIcon />
                     </ListItemIcon>
-                    <ListItemText primary="My Tickets" />
+                    <ListItemText
+                        primary="My Tickets"
+                        primaryTypographyProps={{
+                            fontSize: 20,
+                            fontWeight: 'medium',
+                        }}
+                    />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/manage-role">
                     <ListItemIcon>
                         <WorkIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Manage Role" />
+                    <ListItemText
+                        primary="Manage Role"
+                        primaryTypographyProps={{
+                            fontSize: 20,
+                            fontWeight: 'medium',
+                        }}
+                    />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/my-team">
                     <ListItemIcon>
                         <PeopleIcon />
                     </ListItemIcon>
-                    <ListItemText primary="My Team" />
+                    <ListItemText
+                        primary="My Team"
+                        primaryTypographyProps={{
+                            fontSize: 20,
+                            fontWeight: 'medium',
+                        }}
+                    />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/chat">
                     <ListItemIcon>
                         <ChatIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Chat" />
+                    <ListItemText
+                        primary="Chat"
+                        primaryTypographyProps={{
+                            fontSize: 20,
+                            fontWeight: 'medium',
+                        }}
+                    />
                 </ListItem>
             </List>
         </div>
@@ -104,12 +140,13 @@ function DashboardLayout({ window, children }) {
                     ml: { sm: `${drawerWidth}px` },
                 }}
             >
-                <Box
+                <Container
+                    maxWidth="xlg"
                     sx={{
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        mr: 2,
+                        // mr: 2,
                     }}
                 >
                     <Toolbar sx={{ display: 'flex' }}>
@@ -124,7 +161,7 @@ function DashboardLayout({ window, children }) {
                         </IconButton>
                     </Toolbar>
                     <AccountMenu />
-                </Box>
+                </Container>
             </AppBar>
 
             <Box
