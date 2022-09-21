@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/material/styles';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import './index.css';
+// import '@fontsource/roboto/300.css';
+// import '@fontsource/roboto/400.css';
+// import '@fontsource/roboto/500.css';
+// import '@fontsource/roboto/700.css';
+// import './app.css';
 import theme from './theme';
 import { BrowserRouter } from 'react-router-dom';
 //Added BrowserRouter to the App component to make the app work with react-router-dom

@@ -16,7 +16,7 @@ const theme = createTheme({
         },
         background: {
             gradient:
-                'linear-gradient(45deg,hsla(100, 41%, 52%, 1) 6%,hsla(255, 39%, 51%, 1) 37%,hsla(99, 70%, 71%, 1) 64%,hsla(255, 61%, 39%, 1) 86%)',
+                'linear-gradient(315deg, hsla(222, 80%, 41%, 1) 0%, hsla(154, 63%, 56%, 1) 100%)',
             default: '#F5F5F5',
         },
     },

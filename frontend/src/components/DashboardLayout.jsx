@@ -48,11 +48,9 @@ function DashboardLayout({ window, children }) {
             {/* <Toolbar> */}
             <Box sx={{ ml: 2, mt: 1 }}>
                 <Typography variant="h4" noWrap component="div">
-                    Tracker Inc.
+                    SLEICK LLC.
                 </Typography>
-                <Typography variant="h6" noWrap component="div">
-                    Welcome {user.firstName} {user.lastName}
-                </Typography>
+                <Typography variant="h6" noWrap component="div"></Typography>
             </Box>
             {/* </Toolbar> */}
             <Divider />
