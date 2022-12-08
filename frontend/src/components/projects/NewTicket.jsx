@@ -1,74 +1,75 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router-dom';
-import authn from '../../services/authnService';
+import { useState } from "react";
+import axios from "axios";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
+
+import authn from "../../services/authn.service";
 
 const priorities = [
     {
-        value: 'low',
-        label: 'Low',
+        value: "low",
+        label: "Low",
     },
     {
-        value: 'medium',
-        label: 'Medium',
+        value: "medium",
+        label: "Medium",
     },
     {
-        value: 'high',
-        label: 'High',
+        value: "high",
+        label: "High",
     },
 ];
 const devices = [
     {
-        value: 'phone',
-        label: 'Cell phone',
+        value: "phone",
+        label: "Cell phone",
     },
     {
-        value: 'laptop',
-        label: 'Laptop',
+        value: "laptop",
+        label: "Laptop",
     },
     {
-        value: 'pc',
-        label: 'PC',
+        value: "pc",
+        label: "PC",
     },
     {
-        value: 'tablet',
-        label: 'Tablet',
+        value: "tablet",
+        label: "Tablet",
     },
 ];
 const browsers = [
     {
-        value: 'google chrome',
-        label: 'Google Chrome',
+        value: "google chrome",
+        label: "Google Chrome",
     },
     {
-        value: 'safari',
-        label: 'Safari',
+        value: "safari",
+        label: "Safari",
     },
     {
-        value: 'microsft edge',
-        label: 'Microsft Edge',
+        value: "microsft edge",
+        label: "Microsft Edge",
     },
     {
-        value: 'mozilla firefox',
-        label: 'Mozilla Firefox',
+        value: "mozilla firefox",
+        label: "Mozilla Firefox",
     },
     {
-        value: 'other',
-        label: 'Other',
+        value: "other",
+        label: "Other",
     },
 ];
 
 function NewTicket() {
-    const [priority, setPiority] = useState('low');
-    const [device, setDevice] = useState('');
-    const [browser, setBrowser] = useState('');
+    const [priority, setPiority] = useState("low");
+    const [device, setDevice] = useState("");
+    const [browser, setBrowser] = useState("");
     const navigate = useNavigate();
 
     const handlePriorityChange = (event) => {
@@ -87,24 +88,24 @@ function NewTicket() {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const newTicket = {
-            title: formData.get('title'),
-            priority: formData.get('priority'),
-            device: formData.get('device'),
-            browser: formData.get('browser'),
-            description: formData.get('description'),
+            title: formData.get("title"),
+            priority: formData.get("priority"),
+            device: formData.get("device"),
+            browser: formData.get("browser"),
+            description: formData.get("description"),
         };
 
         const token = authn.getJwt();
         try {
             console.log(token);
             const options = {
-                method: 'POST',
-                headers: { 'x-authn-token': token },
+                method: "POST",
+                headers: { "x-authn-token": token },
                 data: newTicket,
-                url: '/api/tickets',
+                url: "/api/tickets",
             };
             await axios(options);
-            navigate('../all-tickets', { replace: true }); //redirect user
+            navigate("../all-tickets", { replace: true }); //redirect user
         } catch (error) {
             alert(error.response.data);
         }
@@ -115,10 +116,10 @@ function NewTicket() {
                 <Box
                     sx={{
                         mt: 4,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        bgcolor: 'white',
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        bgcolor: "white",
                         padding: 2,
                         borderRadius: 2,
                     }}
@@ -223,8 +224,8 @@ function NewTicket() {
                             fullWidth
                             variant="contained"
                             sx={{
-                                bgcolor: 'primary.main',
-                                fontSize: '1.3rem',
+                                bgcolor: "primary.main",
+                                fontSize: "1.3rem",
                                 pt: 1,
                                 pb: 1,
                                 mt: 3,

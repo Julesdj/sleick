@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react';
-import axios from 'axios';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { useLocation, useNavigate } from 'react-router-dom';
-import authn from '../../services/authnService';
-import theme from '../../theme';
+import React, { useEffect } from "react";
+import axios from "axios";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import authn from "../../services/authn.service";
+import theme from "../../theme";
 
 function Copyright(props) {
     return (
@@ -32,24 +33,24 @@ function SignUp() {
     useEffect(() => {
         const currentUser = authn.getCurrentUser();
         if (currentUser) {
-            navigate('/user/dashboard', { replace: true });
+            navigate("/user/dashboard", { replace: true });
         }
     });
 
-    let from = location.state?.from?.pathname || '/user/dashboard';
+    let from = location.state?.from?.pathname || "/user/dashboard";
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const newUser = {
-            firstName: formData.get('firstName'),
-            lastName: formData.get('lastName'),
-            email: formData.get('email'),
-            password: formData.get('password'),
+            firstName: formData.get("firstName"),
+            lastName: formData.get("lastName"),
+            email: formData.get("email"),
+            password: formData.get("password"),
         };
         try {
-            const response = await axios.post('/api/users', newUser);
-            authn.loginWithJwt(response.headers['x-authn-token']);
+            const response = await axios.post("/api/users", newUser);
+            authn.loginWithJwt(response.headers["x-authn-token"]);
             navigate(from, { replace: true }); //redirect user
         } catch (error) {
             alert(error.response.data);
@@ -60,23 +61,23 @@ function SignUp() {
         <div
             style={{
                 background: theme.palette.background.gradient,
-                width: '100vw%',
-                height: '100vh',
+                width: "100vw%",
+                height: "100vh",
             }}
         >
             <Container component="main" maxWidth="sm" sx={{ padding: 2 }}>
                 <Box
                     sx={{
-                        mt: '25%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        backgroundColor: 'white',
+                        mt: "25%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        backgroundColor: "white",
                         padding: 2,
                         borderRadius: 2,
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+                    <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
@@ -136,7 +137,7 @@ function SignUp() {
                             fullWidth
                             variant="contained"
                             sx={{
-                                bgcolor: 'primary.main',
+                                bgcolor: "primary.main",
                                 pt: 2,
                                 pb: 2,
                                 mt: 3,

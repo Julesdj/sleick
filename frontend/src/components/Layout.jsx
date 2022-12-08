@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -22,7 +22,6 @@ import ForumIcon from "@mui/icons-material/Forum";
 import PeopleIcon from "@mui/icons-material/People";
 import WorkIcon from "@mui/icons-material/Work";
 
-import authn from "../services/authnService";
 import theme from "../theme";
 import AccountMenu from "./users/AccountMenu";
 
@@ -35,20 +34,12 @@ function Layout({ window, children }) {
         setMobileOpen(!mobileOpen);
     };
 
-    const [user, setUser] = useState({});
-    useEffect(() => {
-        try {
-            let currentUser = authn.getCurrentUser();
-            setUser(currentUser);
-        } catch (err) {}
-    }, []);
-
     const drawer = (
         <div>
             {/* <Toolbar> */}
-            <Box sx={{ ml: 2, mt: 1 }}>
+            <Box sx={{ ml: 2, mt: 1.5, mb: 1 }}>
                 <Typography variant="h4" noWrap component="div">
-                    SLEICK LLC.
+                    Sleick Inc.
                 </Typography>
                 <Typography variant="h6" noWrap component="div"></Typography>
             </Box>
@@ -72,7 +63,7 @@ function Layout({ window, children }) {
                         <AccountTreeIcon />
                     </ListItemIcon>
                     <ListItemText
-                        primary="All Projects"
+                        primary="Projects"
                         primaryTypographyProps={{
                             fontSize: 20,
                             fontWeight: "medium",
@@ -84,7 +75,7 @@ function Layout({ window, children }) {
                         <ConfirmationNumberIcon />
                     </ListItemIcon>
                     <ListItemText
-                        primary="All Tickets"
+                        primary="Tickets"
                         primaryTypographyProps={{
                             fontSize: 20,
                             fontWeight: "medium",
@@ -108,7 +99,7 @@ function Layout({ window, children }) {
                         <WorkIcon />
                     </ListItemIcon>
                     <ListItemText
-                        primary="Manage Role"
+                        primary="Manage Roles"
                         primaryTypographyProps={{
                             fontSize: 20,
                             fontWeight: "medium",
