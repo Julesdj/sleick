@@ -1,6 +1,5 @@
-import React from 'react';
-import authn from './authnService';
-import { useLocation, Navigate } from 'react-router-dom';
+import authn from "./authnService";
+import { useLocation, Navigate } from "react-router-dom";
 
 function RequireAuthn({ children }) {
     let user = authn.getCurrentUser();

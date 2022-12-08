@@ -24,11 +24,11 @@ import WorkIcon from "@mui/icons-material/Work";
 
 import authn from "../services/authnService";
 import theme from "../theme";
-import AccountMenu from "../components/users/AccountMenu";
+import AccountMenu from "./users/AccountMenu";
 
 const drawerWidth = 230;
 
-function DashboardLayout({ window, children }) {
+function Layout({ window, children }) {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
@@ -240,4 +240,4 @@ function DashboardLayout({ window, children }) {
     );
 }
 
-export default DashboardLayout;
+export default Layout;

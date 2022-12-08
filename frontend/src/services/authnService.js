@@ -1,8 +1,8 @@
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 
-const apiEndpoint = '/api/authn';
-const tokenKey = 'token';
+const apiEndpoint = "/api/authn";
+const tokenKey = "token";
 // axios.defaults.headers.common['x-authn-token'] = authn.getJwt()
 
 export async function login(email, password) {

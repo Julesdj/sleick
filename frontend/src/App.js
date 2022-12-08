@@ -1,11 +1,10 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import DashboardLayout from "./components/DashboardLayout";
 import { CssBaseline } from "@mui/material";
 
+import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
-// import { Route, Routes } from 'react-router-dom';
-import AllProjects from "./components/projects/AllProjects";
+import Projects from "./components/projects/Projects";
 import Chat from "./components/Chat";
 import MyTeam from "./components/MyTeam";
 import ManageRole from "./components/ManageRole";
@@ -15,7 +14,7 @@ import SignIn from "./components/users/SignIn";
 import SignUp from "./components/users/SignUp";
 import RequireAuthn from "./services/RequireAuthn";
 import NewTicket from "./components/projects/NewTicket";
-import AllTickets from "./components/projects/AllTickets";
+import Tickets from "./components/projects/Tickets";
 
 function App() {
     return (
@@ -28,7 +27,7 @@ function App() {
                     path="/user/*"
                     element={
                         <RequireAuthn>
-                            <DashboardLayout>
+                            <Layout>
                                 <Routes>
                                     <Route
                                         path="dashboard"
@@ -36,11 +35,11 @@ function App() {
                                     />
                                     <Route
                                         path="projects"
-                                        element={<AllProjects />}
+                                        element={<Projects />}
                                     />
                                     <Route
                                         path="tickets"
-                                        element={<AllTickets />}
+                                        element={<Tickets />}
                                     />
                                     <Route path="chat" element={<Chat />} />
                                     <Route
@@ -61,7 +60,7 @@ function App() {
                                     />
                                     <Route path="*" element={<Page404 />} />
                                 </Routes>
-                            </DashboardLayout>
+                            </Layout>
                         </RequireAuthn>
                     }
                 />
