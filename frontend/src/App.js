@@ -1,21 +1,21 @@
-import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import DashboardLayout from './components/DashboardLayout';
-import { CssBaseline } from '@mui/material';
+import React from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
+import DashboardLayout from "./components/DashboardLayout";
+import { CssBaseline } from "@mui/material";
 
-import Dashboard from './components/Dashboard';
+import Dashboard from "./components/Dashboard";
 // import { Route, Routes } from 'react-router-dom';
-import AllProjects from './components/projects/AllProjects';
-import Chat from './components/Chat';
-import MyTeam from './components/MyTeam';
-import ManageRole from './components/ManageRole';
-import MyTickets from './components/projects/MyTickets';
-import Page404 from './components/Page404';
-import SignIn from './components/users/SignIn';
-import SignUp from './components/users/SignUp';
-import RequireAuthn from './services/RequireAuthn';
-import NewTicket from './components/projects/NewTicket';
-import AllTickets from './components/projects/AllTickets';
+import AllProjects from "./components/projects/AllProjects";
+import Chat from "./components/Chat";
+import MyTeam from "./components/MyTeam";
+import ManageRole from "./components/ManageRole";
+import MyTickets from "./components/projects/MyTickets";
+import Page404 from "./components/Page404";
+import SignIn from "./components/users/SignIn";
+import SignUp from "./components/users/SignUp";
+import RequireAuthn from "./services/RequireAuthn";
+import NewTicket from "./components/projects/NewTicket";
+import AllTickets from "./components/projects/AllTickets";
 
 function App() {
     return (
@@ -35,11 +35,11 @@ function App() {
                                         element={<Dashboard />}
                                     />
                                     <Route
-                                        path="all-projects"
+                                        path="projects"
                                         element={<AllProjects />}
                                     />
                                     <Route
-                                        path="all-tickets"
+                                        path="tickets"
                                         element={<AllTickets />}
                                     />
                                     <Route path="chat" element={<Chat />} />

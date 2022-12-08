@@ -1,8 +1,8 @@
-import Express from 'express';
-import lodash from 'lodash';
-import Joi from 'joi';
-import * as bcrypt from 'bcrypt';
-import User from '../Models/user.js';
+import Express from "express";
+import lodash from "lodash";
+import Joi from "joi";
+import * as bcrypt from "bcrypt";
+import User from "../Models/user.model.js";
 
 //Variables
 const authn = Express.Router();
@@ -17,13 +17,13 @@ function validate(req) {
     return schema.validate(req);
 }
 
-authn.post('/', async (req, res) => {
+authn.post("/", async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
     //Check if user already in the database
     let user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).send('Invalid email or password.');
+    if (!user) return res.status(400).send("Invalid email or password.");
 
     const validPassword = await bcrypt.compare(
         req.body.password,
@@ -31,7 +31,7 @@ authn.post('/', async (req, res) => {
     );
 
     if (!validPassword)
-        return res.status(400).send('Invalid email or password.');
+        return res.status(400).send("Invalid email or password.");
 
     //Generate authn token
     const token = user.generateAuthnToken();

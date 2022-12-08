@@ -1,32 +1,32 @@
-import { useEffect, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import { useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 //icons
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import ChatIcon from '@mui/icons-material/Chat';
-import PeopleIcon from '@mui/icons-material/People';
-import WorkIcon from '@mui/icons-material/Work';
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
+import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import ForumIcon from "@mui/icons-material/Forum";
+import PeopleIcon from "@mui/icons-material/People";
+import WorkIcon from "@mui/icons-material/Work";
 
-import authn from '../services/authnService';
-import theme from '../theme';
-import AccountMenu from '../components/users/AccountMenu';
+import authn from "../services/authnService";
+import theme from "../theme";
+import AccountMenu from "../components/users/AccountMenu";
 
-const drawerWidth = 240;
+const drawerWidth = 230;
 
 function DashboardLayout({ window, children }) {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -63,11 +63,11 @@ function DashboardLayout({ window, children }) {
                         primary="Dashboard"
                         primaryTypographyProps={{
                             fontSize: 20,
-                            fontWeight: 'medium',
+                            fontWeight: "medium",
                         }}
                     />
                 </ListItem>
-                <ListItem button component={RouterLink} to="/user/all-projects">
+                <ListItem button component={RouterLink} to="/user/projects">
                     <ListItemIcon>
                         <AccountTreeIcon />
                     </ListItemIcon>
@@ -75,11 +75,11 @@ function DashboardLayout({ window, children }) {
                         primary="All Projects"
                         primaryTypographyProps={{
                             fontSize: 20,
-                            fontWeight: 'medium',
+                            fontWeight: "medium",
                         }}
                     />
                 </ListItem>
-                <ListItem button component={RouterLink} to="/user/all-tickets">
+                <ListItem button component={RouterLink} to="/user/tickets">
                     <ListItemIcon>
                         <ConfirmationNumberIcon />
                     </ListItemIcon>
@@ -87,7 +87,7 @@ function DashboardLayout({ window, children }) {
                         primary="All Tickets"
                         primaryTypographyProps={{
                             fontSize: 20,
-                            fontWeight: 'medium',
+                            fontWeight: "medium",
                         }}
                     />
                 </ListItem>
@@ -99,7 +99,7 @@ function DashboardLayout({ window, children }) {
                         primary="My Tickets"
                         primaryTypographyProps={{
                             fontSize: 20,
-                            fontWeight: 'medium',
+                            fontWeight: "medium",
                         }}
                     />
                 </ListItem>
@@ -111,7 +111,7 @@ function DashboardLayout({ window, children }) {
                         primary="Manage Role"
                         primaryTypographyProps={{
                             fontSize: 20,
-                            fontWeight: 'medium',
+                            fontWeight: "medium",
                         }}
                     />
                 </ListItem>
@@ -123,19 +123,19 @@ function DashboardLayout({ window, children }) {
                         primary="My Team"
                         primaryTypographyProps={{
                             fontSize: 20,
-                            fontWeight: 'medium',
+                            fontWeight: "medium",
                         }}
                     />
                 </ListItem>
                 <ListItem button component={RouterLink} to="/user/chat">
                     <ListItemIcon>
-                        <ChatIcon />
+                        <ForumIcon />
                     </ListItemIcon>
                     <ListItemText
                         primary="Chat"
                         primaryTypographyProps={{
                             fontSize: 20,
-                            fontWeight: 'medium',
+                            fontWeight: "medium",
                         }}
                     />
                 </ListItem>
@@ -147,7 +147,7 @@ function DashboardLayout({ window, children }) {
         window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: "flex" }}>
             <AppBar
                 position="fixed"
                 sx={{
@@ -158,19 +158,19 @@ function DashboardLayout({ window, children }) {
                 <Container
                     maxWidth="xlg"
                     sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
                         // mr: 2,
                     }}
                 >
-                    <Toolbar sx={{ display: 'flex' }}>
+                    <Toolbar sx={{ display: "flex" }}>
                         <IconButton
                             color="inherit"
                             aria-label="open drawer"
                             edge="start"
                             onClick={handleDrawerToggle}
-                            sx={{ mr: 2, display: { sm: 'none' } }}
+                            sx={{ mr: 2, display: { sm: "none" } }}
                         >
                             <MenuIcon />
                         </IconButton>
@@ -194,9 +194,9 @@ function DashboardLayout({ window, children }) {
                         keepMounted: true, // Better open performance on mobile.
                     }}
                     sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': {
-                            boxSizing: 'border-box',
+                        display: { xs: "block", sm: "none" },
+                        "& .MuiDrawer-paper": {
+                            boxSizing: "border-box",
                             width: drawerWidth,
                         },
                     }}
@@ -206,18 +206,18 @@ function DashboardLayout({ window, children }) {
                 <Drawer
                     variant="permanent"
                     sx={{
-                        display: { xs: 'none', sm: 'block' },
-                        '& .MuiDrawer-paper': {
+                        display: { xs: "none", sm: "block" },
+                        "& .MuiDrawer-paper": {
                             background: theme.palette.primary.dark,
-                            boxSizing: 'border-box',
-                            color: '#ffffff',
+                            boxSizing: "border-box",
+                            color: "#ffffff",
                             width: drawerWidth,
                         },
-                        '& .MuiSvgIcon-root': {
-                            color: '#ffffff',
+                        "& .MuiSvgIcon-root": {
+                            color: "#ffffff",
                         },
-                        '& .MuiDivider-root': {
-                            borderColor: '#ffffff',
+                        "& .MuiDivider-root": {
+                            borderColor: "#ffffff",
                         },
                     }}
                     open
