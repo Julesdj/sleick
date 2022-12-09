@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { parseISO } from "date-fns";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 import { Link as RouterLink } from "react-router-dom";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-import { getTickets } from "../../services/ticket.service";
+import { reducer, getTickets } from "../../services/ticket.service";
 
 const columns = [
     { field: "Title", headerName: "Ticket title", width: 220 },
@@ -59,15 +60,19 @@ const columns = [
 ];
 
 function Tickets() {
-    const [tickets, setTickets] = useState([]);
+    const [{ loading, error, tickets }, dispatch] = useReducer(reducer, {
+        tickets: [],
+        loading: true,
+        error: "",
+    });
+
     useEffect(() => {
         async function getTicketsData() {
             try {
                 const { data } = await getTickets();
-                console.log(data);
-                setTickets(data);
+                dispatch({ type: "FETCH_SUCCESS", payload: data });
             } catch (error) {
-                console.log("error");
+                dispatch({ type: "FETCH_FAILED", payload: error.message });
             }
         }
         getTicketsData();
@@ -84,7 +89,6 @@ function Tickets() {
             ticket.submitterId["lastName"],
         date: parseISO(ticket.createdAt),
     }));
-
     return (
         <Container component="main" maxWidth="lg">
             <Box
@@ -97,7 +101,7 @@ function Tickets() {
                     mt: 1,
                 }}
             >
-                <Typography variant="h4">Tickets table</Typography>
+                <Typography variant="h4">Tickets</Typography>
                 <Button
                     variant="contained"
                     component={RouterLink}
@@ -121,14 +125,38 @@ function Tickets() {
                     borderRadius: 2,
                 }}
             >
-                <DataGrid
-                    rows={rows}
-                    columns={columns}
-                    pageSize={15}
-                    rowsPerPageOptions={[15]}
-                    checkboxSelection
-                    disableSelectionOnClick
-                />
+                {loading ? (
+                    <Box
+                        sx={{
+                            my: "30vh",
+                            mx: "auto",
+                            height: "30vh",
+                            width: "30vw",
+                        }}
+                    >
+                        <CircularProgress size={60} />
+                    </Box>
+                ) : error ? (
+                    <Box
+                        sx={{
+                            my: "30vh",
+                            mx: "auto",
+                            height: "30vh",
+                            width: "30vw",
+                        }}
+                    >
+                        {error}
+                    </Box>
+                ) : (
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        pageSize={15}
+                        rowsPerPageOptions={[15]}
+                        checkboxSelection
+                        disableSelectionOnClick
+                    />
+                )}
             </Box>
         </Container>
     );

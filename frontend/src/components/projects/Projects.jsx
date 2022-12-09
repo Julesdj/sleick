@@ -87,7 +87,7 @@ function Projects() {
                     mt: 1,
                 }}
             >
-                <Typography variant="h4">Projects table</Typography>
+                <Typography variant="h4">Projects </Typography>
                 <Button
                     variant="contained"
                     component={RouterLink}
